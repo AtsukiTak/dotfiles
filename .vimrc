@@ -30,7 +30,7 @@ set shiftwidth=2
 set softtabstop=2
 set smartindent
 set list
-set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
+set listchars=tab:--,trail:-,extends:»,precedes:«,nbsp:%
 set hidden
 set history=50
 set virtualedit=block
