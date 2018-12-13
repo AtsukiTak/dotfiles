@@ -17,7 +17,7 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set smartindent
+set autoindent
 set listchars=tab:--,trail:-,extends:»,precedes:«,nbsp:%  "When I want to see these chars, do `set list`
 set hidden
 set history=50
