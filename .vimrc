@@ -22,9 +22,7 @@ set listchars=tab:--,trail:-,extends:»,precedes:«,nbsp:%  "When I want to see 
 set hidden
 set history=50
 set virtualedit=block
-" set whichwrap=b,s,[,],<,>
 set backspace=indent,eol,start
-set wildmenu
 set foldmethod=marker
 set foldtext=getline(v:foldstart)
 
