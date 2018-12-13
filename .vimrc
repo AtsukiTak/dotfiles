@@ -8,18 +8,6 @@ let g:rustfmt_command = 'rustfmt'
 noremap qq :RustFmt<cr>
 
 
-" Syntastic
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_rust_checkers = ['rustc']
-" noremap qw :SyntasticCheck<cr>
-" noremap qc :lclose<cr>
-
-
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set number
 set title
