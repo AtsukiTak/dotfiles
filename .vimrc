@@ -23,6 +23,7 @@ noremap qq :RustFmt<cr>
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set number
 set title
+set hlsearch
 set ambiwidth=double
 set expandtab
 set tabstop=2
