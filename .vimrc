@@ -1,12 +1,7 @@
 " Configuration file for vim
 set modelines=0		" CVE-2007-2438
 
-filetype plugin on
-
-" RustFmt
-let g:rustfmt_command = 'rustfmt'
-noremap qq :RustFmt<cr>
-
+filetype on
 
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set number
@@ -46,3 +41,27 @@ highlight Normal ctermbg=none
 au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
 " Don't write backup file if vim is being called by "chpass"
 au BufWrite /private/etc/pw.* set nowritebackup nobackup
+
+
+"" Plugin Manager
+
+function! s:load_rust()
+  let g:rustfmt_command = "rustfmt"
+  noremap qq :RustFmt<cr>
+  packadd rust
+endfunction
+
+function! s:load_go()
+  packadd vim-go
+endfunction
+
+function! s:load_elm()
+  packadd elm
+endfunction
+
+augroup load_plubins
+  autocmd!
+  autocmd FileType go call s:load_go()
+  autocmd FileType rust call s:load_rust()
+  autocmd FileType elm call s:load_elm()
+augroup END
