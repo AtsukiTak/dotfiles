@@ -3,6 +3,10 @@ dotfiles
 
 ### Vim
 
+#### プラグインのドキュメントの作成
+
+:helptags ALL
+
 #### ロード中のプラグイン一覧を取得
 
 :scriptnames
