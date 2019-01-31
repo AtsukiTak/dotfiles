@@ -59,9 +59,17 @@ function! s:load_elm()
   packadd elm
 endfunction
 
-augroup load_plubins
+function! s:load_js()
+  packadd vim-styled-components
+  packadd vim-javascript
+endfunction
+
+augroup load_plugins
   autocmd!
   autocmd FileType go call s:load_go()
   autocmd FileType rust call s:load_rust()
   autocmd FileType elm call s:load_elm()
+  autocmd FileType javascript call s:load_js()
+  doautoall BufRead
 augroup END
+

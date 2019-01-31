@@ -13,3 +13,9 @@
 [submodule ".vim/pack/plugins/start/vim-go"]
 	path = .vim/pack/plugins/opt/vim-go
 	url = https://github.com/fatih/vim-go.git
+[submodule ".vim/pack/plugins/opt/vim-styled-components"]
+	path = .vim/pack/plugins/opt/vim-styled-components
+	url = https://github.com/styled-components/vim-styled-components.git
+[submodule ".vim/pack/plugins/opt/vim-javascript"]
+	path = .vim/pack/plugins/opt/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
