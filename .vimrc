@@ -61,6 +61,7 @@ endfunction
 
 function! s:load_js()
   packadd vim-styled-components
+  packadd vim-jsx
   packadd vim-javascript
 endfunction
 
