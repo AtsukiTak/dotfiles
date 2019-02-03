@@ -5,7 +5,6 @@ export GOPATH=$HOME/go
 export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$GOPATH/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$LD_LIBRARY_PATH
 export CPATH=/usr/local/opt/openssl/include:/usr/local/include:$CPATH
-export fpath=($HOME/.zfunctions $fpath)
 
 # 文字コードはUTF-8
 export LANG=ja_JP.UTF-8
