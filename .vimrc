@@ -49,14 +49,8 @@ function! s:load_rust()
   let g:rustfmt_autosave = 1
   packadd rust
   noremap qq :RustFmt<CR>
-  noremap cc :Cargo check<CR>
+  noremap qc :Cargo check<CR>
 
-  let g:racer_experimental_completer = 1
-  let g:racer_insert_paren = 1
-  packadd vim-racer
-  set omnifunc=recer#RacerComplete
-  map gd :call racer#GoToDefinition()<CR>
-  map gs :split<CR>:call racer#GoToDefinition()<CR>
 endfunction
 
 function! s:load_js()
