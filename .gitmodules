@@ -13,3 +13,9 @@
 [submodule ".vim/pack/plugins/opt/vim-jsx"]
 	path = .vim/pack/plugins/opt/vim-jsx
 	url = https://github.com/mxw/vim-jsx.git
+[submodule ".vim/pack/plugins/opt/typescript-vim"]
+	path = .vim/pack/plugins/opt/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim.git
+[submodule ".vim/pack/plugins/opt/vim-jsx-pretty"]
+	path = .vim/pack/plugins/opt/vim-jsx-pretty
+	url = https://github.com/MaxMEllon/vim-jsx-pretty.git

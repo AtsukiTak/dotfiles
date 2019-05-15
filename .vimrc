@@ -59,10 +59,17 @@ function! s:load_js()
   packadd vim-javascript
 endfunction
 
+function! s:load_ts()
+  call s:load_js()
+  packadd typescript-vim
+  packadd vim-jsx-pretty
+endfunction
+
 augroup load_plugins
   autocmd!
   autocmd FileType rust call s:load_rust()
   autocmd FileType javascript call s:load_js()
+  autocmd BufNewFile,BufRead *.tsx call s:load_ts()
   doautoall BufRead
 augroup END
 
