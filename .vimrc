@@ -1,7 +1,7 @@
 " Configuration file for vim
 set modelines=0		" CVE-2007-2438
 
-filetype on
+filetype plugin on
 
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set number
@@ -46,17 +46,17 @@ au BufWrite /private/etc/pw.* set nowritebackup nobackup
 "" Plugin Manager
 
 function! s:load_rust()
-  let g:rustfmt_command = "rustfmt"
-  noremap qq :RustFmt<cr>
+  let g:rustfmt_autosave = 1
   packadd rust
-endfunction
+  noremap qq :RustFmt<CR>
+  noremap cc :Cargo check<CR>
 
-function! s:load_go()
-  packadd vim-go
-endfunction
-
-function! s:load_elm()
-  packadd elm
+  let g:racer_experimental_completer = 1
+  let g:racer_insert_paren = 1
+  packadd vim-racer
+  set omnifunc=recer#RacerComplete
+  map gd :call racer#GoToDefinition()<CR>
+  map gs :split<CR>:call racer#GoToDefinition()<CR>
 endfunction
 
 function! s:load_js()
@@ -67,9 +67,7 @@ endfunction
 
 augroup load_plugins
   autocmd!
-  autocmd FileType go call s:load_go()
   autocmd FileType rust call s:load_rust()
-  autocmd FileType elm call s:load_elm()
   autocmd FileType javascript call s:load_js()
   doautoall BufRead
 augroup END
