@@ -67,7 +67,7 @@ function! s:load_ts()
   packadd typescript-vim
   packadd vim-jsx-pretty
   packadd vim-prettier
-  noremap qq :Prettier
+  noremap qq :Prettier<CR>
 endfunction
 
 augroup load_plugins
