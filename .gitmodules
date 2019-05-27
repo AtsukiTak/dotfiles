@@ -19,6 +19,6 @@
 [submodule ".vim/pack/plugins/opt/vim-jsx-pretty"]
 	path = .vim/pack/plugins/opt/vim-jsx-pretty
 	url = https://github.com/MaxMEllon/vim-jsx-pretty.git
-[submodule ".vim/pack/plugins/opt/vim-clang-format"]
-	path = .vim/pack/plugins/opt/vim-clang-format
-	url = https://github.com/rhysd/vim-clang-format.git
+[submodule ".vim/pack/plugins/opt/vim-prettier"]
+	path = .vim/pack/plugins/opt/vim-prettier
+	url = https://github.com/prettier/vim-prettier.git

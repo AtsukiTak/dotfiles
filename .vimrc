@@ -57,7 +57,8 @@ function! s:load_js()
   packadd vim-styled-components
   packadd vim-jsx
   packadd vim-javascript
-  call s:load_clang_format()
+  packadd vim-prettier
+  noremap qq :Prettier<CR>
 endfunction
 
 function! s:load_ts()
@@ -65,13 +66,8 @@ function! s:load_ts()
   packadd vim-javascript
   packadd typescript-vim
   packadd vim-jsx-pretty
-  call s:load_clang_format()
-endfunction
-
-function! s:load_clang_format()
-  packadd vim-clang-format
-  noremap qq :ClangFormat<CR>
-  let g:clang_format#code_style="google"
+  packadd vim-prettier
+  noremap qq :Prettier
 endfunction
 
 augroup load_plugins
