@@ -1,7 +1,8 @@
 " Configuration file for vim
 set modelines=0		" CVE-2007-2438
 
-filetype plugin on
+syntax on
+filetype plugin indent on
 
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set number
@@ -31,7 +32,6 @@ noremap == gg=G''
 noremap <C-j> <ESC>
 inoremap <C-j> <ESC>
 
-syntax on
 colorscheme molokai
 set t_Co=256
 
@@ -47,25 +47,16 @@ au BufWrite /private/etc/pw.* set nowritebackup nobackup
 
 function! s:load_rust()
   let g:rustfmt_autosave = 1
-  packadd rust
   noremap qq :RustFmt<CR>
   noremap qc :Cargo check<CR>
-
 endfunction
 
 function! s:load_js()
-  packadd vim-styled-components
-  packadd vim-jsx
-  packadd vim-javascript
   packadd vim-prettier
   noremap qq :Prettier<CR>
 endfunction
 
 function! s:load_ts()
-  set filetype=typescript
-  packadd vim-javascript
-  packadd typescript-vim
-  packadd vim-jsx-pretty
   packadd vim-prettier
   noremap qq :Prettier<CR>
 endfunction
@@ -75,6 +66,4 @@ augroup load_plugins
   autocmd FileType rust call s:load_rust()
   autocmd FileType javascript call s:load_js()
   autocmd BufNewFile,BufRead *.tsx,*.ts call s:load_ts()
-  doautoall BufRead
 augroup END
-
