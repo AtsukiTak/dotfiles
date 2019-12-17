@@ -32,7 +32,7 @@ alias t="tree"
 alias mv='mv -i'
 alias l='ls -1'
 alias python='python3'
-alias bitcoin-cli='~/Develop/bitcoin/bitcoin-core/src/bitcoin-cli -rpcconnect=10.0.1.5 -rpcport=8332 -rpcuser=gacky -rpcpassword=bitcoinwithgacky'
+alias pbcopy='xsel --clipboard --input'
 
 #
 # 補完
