@@ -2,7 +2,7 @@
 # 基本
 #
 export GOPATH=$HOME/go
-export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$GOPATH/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$GOPATH/bin:$HOME/.nodebrew/current/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$LD_LIBRARY_PATH
 export CPATH=/usr/local/opt/openssl/include:/usr/local/include:$CPATH
 
