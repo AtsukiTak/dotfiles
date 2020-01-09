@@ -45,6 +45,8 @@ au BufWrite /private/etc/pw.* set nowritebackup nobackup
 
 "" Plugin Manager
 
+let g:polyglot_disabled = ['coffee-script']
+
 function! s:load_rust()
   let g:rustfmt_autosave = 1
   noremap qq :RustFmt<CR>
