@@ -63,6 +63,11 @@ function! s:load_ts()
   noremap qq :Prettier<CR>
 endfunction
 
+function! s:load_vue()
+  packadd vim-prettier
+  noremap qq :Prettier<CR>
+endfunction
+
 function! s:load_python()
   noremap qq :0,$!yapf<CR>
 endfunction
@@ -72,5 +77,6 @@ augroup load_plugins
   autocmd FileType rust call s:load_rust()
   autocmd FileType javascript call s:load_js()
   autocmd BufNewFile,BufRead *.tsx,*.ts call s:load_ts()
+  autocmd BufNewFile,BufRead *.vue call s:load_vue()
   autocmd FileType python call s:load_python()
 augroup END
