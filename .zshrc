@@ -32,7 +32,8 @@ alias t="tree"
 alias mv='mv -i'
 alias l='ls -1'
 alias python='python3'
-alias pbcopy='xsel --clipboard --input'
+# Unix環境でもpbcopyっぽく使えるように。zshの補完効かせる
+alias pbcopyunix='xsel --clipboard --input'
 
 #
 # 補完
