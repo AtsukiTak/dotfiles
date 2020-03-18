@@ -13,3 +13,6 @@ hardstatus off
 # disable lock
 bind ^x
 bind x
+
+bind n focus next
+bind p focus prev
