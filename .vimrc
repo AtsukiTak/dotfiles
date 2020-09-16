@@ -32,6 +32,20 @@ noremap == gg=G''
 noremap <C-j> <ESC>
 inoremap <C-j> <ESC>
 
+
+" for coc.nvim
+set nobackup
+set nowritebackup
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
+inoremap <silent><expr> <C-p> coc#refresh()
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gy <Plug>(coc-type-definition)
+nnoremap <silent> gi <Plug>(coc-implementation)
+nnoremap <silent> gr <Plug>(coc-references)
+
+
 colorscheme molokai
 set t_Co=256
 
@@ -55,6 +69,7 @@ function! s:load_rust()
   let g:rustfmt_options = '--edition 2018'
   noremap qq :RustFmt<CR>
   noremap qc :Cargo check<CR>
+  packadd coc.nvim
 endfunction
 
 function! s:load_js()
