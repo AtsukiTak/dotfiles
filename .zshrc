@@ -2,7 +2,7 @@
 # 基本
 #
 export GOPATH=$HOME/go
-export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$GOPATH/bin:$HOME/.nodebrew/current/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$GOPATH/bin:$HOME/.nodebrew/current/bin:/usr/local/opt/llvm/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$LD_LIBRARY_PATH
 export CPATH=/usr/local/opt/openssl/include:/usr/local/include:$CPATH
 
@@ -176,3 +176,4 @@ if [ -f '/Users/takahashiatsuki/google-cloud-sdk/path.zsh.inc' ]; then . '/Users
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/takahashiatsuki/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/takahashiatsuki/google-cloud-sdk/completion.zsh.inc'; fi
+export PATH="/usr/local/opt/ncurses/bin:$PATH"
