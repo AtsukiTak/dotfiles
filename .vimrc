@@ -42,6 +42,9 @@ au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
 " Don't write backup file if vim is being called by "chpass"
 au BufWrite /private/etc/pw.* set nowritebackup nobackup
 
+" Makefile.tomlを開いた時にmakeではなくtomlとして認識するようにする
+autocmd BufNewFile,BufRead Makefile.toml set filetype=toml
+
 
 "" Plugin Manager
 
@@ -56,17 +59,17 @@ endfunction
 
 function! s:load_js()
   packadd vim-prettier
-  noremap qq :Prettier<CR>
+  noremap qq :PrettierAsync<CR>
 endfunction
 
 function! s:load_ts()
   packadd vim-prettier
-  noremap qq :Prettier<CR>
+  noremap qq :PrettierAsync<CR>
 endfunction
 
 function! s:load_vue()
   packadd vim-prettier
-  noremap qq :Prettier<CR>
+  noremap qq :PrettierAsync<CR>
 endfunction
 
 function! s:load_python()
