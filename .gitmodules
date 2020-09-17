@@ -7,9 +7,6 @@
 [submodule ".vim/pack/plugins/start/vim-polyglot"]
 	path = .vim/pack/plugins/start/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
-[submodule ".vim/pack/plugins/opt/coc.nvim"]
-	path = .vim/pack/plugins/opt/coc.nvim
-	url = https://github.com/neoclide/coc.nvim.git
 [submodule ".vim/pack/plugins/opt/vim-lsp"]
 	path = .vim/pack/plugins/opt/vim-lsp
 	url = https://github.com/prabirshrestha/vim-lsp.git
