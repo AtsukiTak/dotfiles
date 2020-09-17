@@ -33,19 +33,6 @@ noremap <C-j> <ESC>
 inoremap <C-j> <ESC>
 
 
-" for coc.nvim
-set nobackup
-set nowritebackup
-set updatetime=300
-set shortmess+=c
-set signcolumn=yes
-inoremap <silent><expr> <C-p> coc#refresh()
-nnoremap <silent> gd <Plug>(coc-definition)
-nnoremap <silent> gy <Plug>(coc-type-definition)
-nnoremap <silent> gi <Plug>(coc-implementation)
-nnoremap <silent> gr <Plug>(coc-references)
-
-
 colorscheme molokai
 set t_Co=256
 
@@ -64,12 +51,34 @@ autocmd BufNewFile,BufRead Makefile.toml set filetype=toml
 
 let g:polyglot_disabled = ['coffee-script']
 
+function! s:load_vim_lsp()
+  packadd vim-lsp
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'rust-analyzer',
+    \ 'cmd': {server_info->['rust-analyzer']},
+    \ 'allowlist': ['rust'],
+    \ })
+  setlocal omnifunc=lsp#complete
+  setlocal signcolumn=yes
+  let g:lsp_signs_enabled = 1
+  let g:lsp_diagnostics_echo_cursor = 1
+  if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+  nmap <buffer> gd <plug>(lsp-definition)
+  nmap <buffer> gpd <plug>(lsp-peek-definition)
+  nmap <buffer> gr <plug>(lsp-references)
+  nmap <buffer> gi <plug>(lsp-implementation)
+  nmap <buffer> gt <plug>(lsp-type-definition)
+  nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
+  nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
+  nmap <buffer> K <plug>(lsp-hover)
+endfunction
+
 function! s:load_rust()
   let g:rustfmt_autosave = 1
   let g:rustfmt_options = '--edition 2018'
   noremap qq :RustFmt<CR>
   noremap qc :Cargo check<CR>
-  packadd coc.nvim
+  call s:load_vim_lsp()
 endfunction
 
 function! s:load_js()
