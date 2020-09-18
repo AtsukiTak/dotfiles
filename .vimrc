@@ -72,7 +72,6 @@ endfunction
 
 function! s:load_rust()
   let g:rustfmt_autosave = 1
-  let g:rustfmt_options = '--edition 2018'
   noremap qq :RustFmt<CR>
   noremap qc :Cargo check<CR>
   call s:load_vim_lsp()
