@@ -26,8 +26,24 @@ setopt auto_cd
 #alias
 alias mv='mv -i'
 alias python='python3'
-# Unix環境でもpbcopyっぽく使えるように。zshの補完効かせる
-alias pbcopyunix='xsel --clipboard --input'
+if which xsel > /dev/null 2>&1; then
+  # Unix環境でもpbcopyっぽく使えるように。zshの補完効かせる
+  alias pbcopy='xsel --clipboard --input'
+fi
+
+#
+# 独自関数
+#
+## 指定されたプロセス（ファイルIOを含む処理でなければいけない）の完了を待つ
+function waitp {
+  lsof -p ${1} +r 2 > /dev/null 2>&1
+}
+if which osascript > /dev/null 2>&1; then
+  # AppleScript経由で通知センターに通知を飛ばす
+  function notifyme {
+    echo "display notification with title \"${1}\" sound name \"Beep\"" | osascript
+  }
+fi
 
 #
 # 補完
