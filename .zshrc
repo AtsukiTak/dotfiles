@@ -17,10 +17,6 @@ export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
 autoload -U promptinit; promptinit
 prompt pure
 
-
-# コマンドのスペルミスを指摘
-setopt correct
-
 # ディレクトリ名でcd
 setopt auto_cd
 
@@ -28,9 +24,7 @@ setopt auto_cd
 #setopt no_beep
 
 #alias
-alias t="tree"
 alias mv='mv -i'
-alias l='ls -1'
 alias python='python3'
 # Unix環境でもpbcopyっぽく使えるように。zshの補完効かせる
 alias pbcopyunix='xsel --clipboard --input'
