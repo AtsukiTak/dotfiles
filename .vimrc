@@ -68,9 +68,8 @@ function! s:load_vim_lsp()
   if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
   nmap <buffer> gd <plug>(lsp-definition)
   nmap <buffer> gpd <plug>(lsp-peek-definition)
-  nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
-  nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
   nmap <buffer> K <plug>(lsp-hover)
+  nmap J :LspDocumentDiagnostics<CR>
 endfunction
 
 function! s:load_rust()
