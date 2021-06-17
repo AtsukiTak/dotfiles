@@ -49,6 +49,9 @@ autocmd BufNewFile,BufRead Makefile.toml set filetype=toml
 
 "" Plugin Manager
 
+" 「%」key で、対応する tag にジャンプするプラグイン
+packadd matchit
+
 let g:polyglot_disabled = ['coffee-script']
 
 function! s:load_vim_lsp()
