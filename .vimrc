@@ -94,6 +94,11 @@ function! s:load_vue()
   noremap qq :PrettierAsync<CR>
 endfunction
 
+function! s:load_html()
+  packadd vim-prettier
+  noremap qq :PrettierAsync<CR>
+endfunction
+
 function! s:load_python()
   noremap qq :0,$!yapf<CR>
 endfunction
@@ -104,5 +109,6 @@ augroup load_plugins
   autocmd FileType javascript call s:load_js()
   autocmd BufNewFile,BufRead *.tsx,*.ts call s:load_ts()
   autocmd BufNewFile,BufRead *.vue call s:load_vue()
+  autocmd FileType html call s:load_html()
   autocmd FileType python call s:load_python()
 augroup END
