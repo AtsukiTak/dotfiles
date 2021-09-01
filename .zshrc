@@ -17,6 +17,9 @@ export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
 autoload -U promptinit; promptinit
 prompt pure
 
+# nodenv
+eval "$(nodenv init -)"
+
 # ディレクトリ名でcd
 setopt auto_cd
 
