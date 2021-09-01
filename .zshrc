@@ -26,6 +26,9 @@ setopt auto_cd
 #alias
 alias mv='mv -i'
 alias python='python3'
+# homebrewの実行時に.cargo/binをPATHから除く
+# config scriptの衝突を防ぐため
+alias brew='PATH=${PATH//${HOME}\/.cargo\/bin:/} brew'
 if which xsel > /dev/null 2>&1; then
   # Unix環境でもpbcopyっぽく使えるように。zshの補完効かせる
   alias pbcopy='xsel --clipboard --input'
