@@ -79,22 +79,7 @@ function! s:load_rust()
   call s:load_vim_lsp()
 endfunction
 
-function! s:load_js()
-  packadd vim-prettier
-  noremap qq :PrettierAsync<CR>
-endfunction
-
-function! s:load_ts()
-  packadd vim-prettier
-  noremap qq :PrettierAsync<CR>
-endfunction
-
-function! s:load_vue()
-  packadd vim-prettier
-  noremap qq :PrettierAsync<CR>
-endfunction
-
-function! s:load_html()
+function! s:load_prettier()
   packadd vim-prettier
   noremap qq :PrettierAsync<CR>
 endfunction
@@ -106,9 +91,8 @@ endfunction
 augroup load_plugins
   autocmd!
   autocmd FileType rust call s:load_rust()
-  autocmd FileType javascript call s:load_js()
-  autocmd BufNewFile,BufRead *.tsx,*.ts call s:load_ts()
-  autocmd BufNewFile,BufRead *.vue call s:load_vue()
-  autocmd FileType html call s:load_html()
+  autocmd FileType javascript call s:load_prettier()
+  autocmd FileType html call s:load_prettier()
+  autocmd BufNewFile,BufRead *.tsx,*.ts,*.vue,*.scss,*.css call s:load_prettier()
   autocmd FileType python call s:load_python()
 augroup END
