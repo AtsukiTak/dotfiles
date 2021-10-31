@@ -46,13 +46,12 @@ au BufWrite /private/etc/pw.* set nowritebackup nobackup
 " Makefile.tomlを開いた時にmakeではなくtomlとして認識するようにする
 autocmd BufNewFile,BufRead Makefile.toml set filetype=toml
 
+autocmd BufNewFile,BufRead *.s set filetype=nasm
 
 "" Plugin Manager
 
 " 「%」key で、対応する tag にジャンプするプラグイン
 packadd matchit
-
-let g:polyglot_disabled = ['coffee-script']
 
 function! s:load_vim_lsp()
   packadd vim-lsp
