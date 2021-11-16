@@ -10,3 +10,6 @@
 [submodule ".vim/pack/plugins/opt/vim-lsp"]
 	path = .vim/pack/plugins/opt/vim-lsp
 	url = https://github.com/prabirshrestha/vim-lsp.git
+[submodule ".vim/pack/plugins/opt/vim-jsx-pretty"]
+	path = .vim/pack/plugins/start/vim-jsx-pretty
+	url = https://github.com/MaxMEllon/vim-jsx-pretty.git
