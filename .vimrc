@@ -73,6 +73,7 @@ endfunction
 
 function! s:load_rust()
   packadd rust.vim
+  syntax enable
   let g:rustfmt_autosave = 1
   noremap qq :RustFmt<CR>
   noremap qc :Cargo check<CR>
