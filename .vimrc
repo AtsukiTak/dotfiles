@@ -72,6 +72,7 @@ function! s:load_vim_lsp()
 endfunction
 
 function! s:load_rust()
+  packadd rust.vim
   let g:rustfmt_autosave = 1
   noremap qq :RustFmt<CR>
   noremap qc :Cargo check<CR>
