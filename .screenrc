@@ -16,3 +16,11 @@ bind x
 
 bind n focus next
 bind p focus prev
+
+# make 4 window with new screens
+bind s eval 'screen' 'screen' 'screen' 'source $HOME/.screen/4-windows.layout'
+bind ^s eval 'screen' 'screen' 'screen' 'source $HOME/.screen/4-windows.layout'
+
+# make 4 window with existing screens
+bind r eval 'source $HOME/.screen/4-windows.layout'
+bind ^r eval 'source $HOME/.screen/4-windows.layout'
