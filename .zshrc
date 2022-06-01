@@ -27,6 +27,7 @@ setopt auto_cd
 #setopt no_beep
 
 #alias
+alias vi='nvim'
 alias mv='mv -i'
 alias python='python3'
 # homebrewの実行時に.cargo/binをPATHから除く
