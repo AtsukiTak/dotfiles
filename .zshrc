@@ -2,7 +2,7 @@
 # 基本
 #
 export GOPATH=$HOME/go
-export PATH=$HOME/.cargo/bin:$GOPATH/bin:/usr/local/opt/llvm/bin:$PATH
+export PATH=$HOME/.cargo/bin:$GOPATH/bin:/usr/local/opt/llvm/bin:$HOME/google-cloud-sdk/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$LD_LIBRARY_PATH
 export CPATH=/usr/local/opt/openssl/include:/usr/local/include:$CPATH
 
@@ -187,10 +187,4 @@ alias ssh='TERM=xterm ssh'
 
 # The next line updates PATH for Netlify's Git Credential Helper.
 if [ -f '/Users/takahashiatsuki/.netlify/helper/path.zsh.inc' ]; then source '/Users/takahashiatsuki/.netlify/helper/path.zsh.inc'; fi
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/takahashiatsuki/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/takahashiatsuki/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/takahashiatsuki/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/takahashiatsuki/google-cloud-sdk/completion.zsh.inc'; fi
 export PATH="/usr/local/opt/ncurses/bin:$PATH"
