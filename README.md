@@ -1,20 +1,16 @@
 dotfiles
 ===
 
-### Vim
+## 各dotfileへのリンクを貼る
 
-#### プラグインのドキュメントの作成
+```
+ln -s <target> <link>
+```
 
-:helptags ALL
+### E.G.
 
-#### ロード中のプラグイン一覧を取得
+```
+# HOMEディレクトリ内で
 
-:scriptnames
-
-#### optに入っているプラグインをロード
-
-:packadd <plugin name>
-
-#### runtimepathの確認
-
-:set runtimepath?
+ln -s ../dotfiles/.zshrc .zshrc
+```
