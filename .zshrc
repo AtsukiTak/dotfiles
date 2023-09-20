@@ -6,6 +6,10 @@ export PATH=$HOME/.cargo/bin:$GOPATH/bin:/usr/local/opt/llvm/bin:$HOME/google-cl
 export LD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$LD_LIBRARY_PATH
 export CPATH=/usr/local/opt/openssl/include:/usr/local/include:$CPATH
 
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+fpath+=("$(brew --prefix)/share/zsh/site-functions")
+
 # 文字コードはUTF-8
 export LANG=ja_JP.UTF-8
 
