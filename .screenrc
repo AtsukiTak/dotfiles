@@ -1,4 +1,3 @@
-#term xterm-256color
 term screen-256color
 defutf8 on
 defkanji utf-8
