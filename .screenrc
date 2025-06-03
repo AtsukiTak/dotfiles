@@ -8,15 +8,15 @@ defencoding utf-8
 defscrollback 10000
 
 shelltitle "$ |zsh"
+
 hardstatus off
 
 # disable lock
 bind ^x
 bind x
 
-bind n focus next
-bind p focus prev
-
-# window navigation with Ctrl-h and Ctrl-l
-bind ^h focus prev
-bind ^l focus next
+# pane navigation
+bind n focus down
+bind p focus up
+bind h focus left
+bind l focus right
