@@ -1,14 +1,14 @@
 #
 # 基本
 #
-export GOPATH=$HOME/go
-export PATH=$HOME/.cargo/bin:$GOPATH/bin:/usr/local/opt/llvm/bin:$HOME/google-cloud-sdk/bin:$PATH
+export PATH=$HOME/.cargo/bin:/usr/local/go/bin:/usr/local/opt/llvm/bin:$HOME/google-cloud-sdk/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$LD_LIBRARY_PATH
 export CPATH=/usr/local/opt/openssl/include:/usr/local/include:$CPATH
 
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 # 文字コードはUTF-8
 export LANG=ja_JP.UTF-8
@@ -24,6 +24,11 @@ prompt pure
 # nodenv
 eval "$(nodenv init -)"
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 # ディレクトリ名でcd
 setopt auto_cd
 
@@ -33,7 +38,6 @@ setopt auto_cd
 #alias
 alias vi='nvim'
 alias mv='mv -i'
-alias python='python3'
 # homebrewの実行時に.cargo/binをPATHから除く
 # config scriptの衝突を防ぐため
 alias brew='PATH=${PATH//${HOME}\/.cargo\/bin:/} brew'
@@ -192,3 +196,20 @@ alias ssh='TERM=xterm ssh'
 # The next line updates PATH for Netlify's Git Credential Helper.
 if [ -f '/Users/takahashiatsuki/.netlify/helper/path.zsh.inc' ]; then source '/Users/takahashiatsuki/.netlify/helper/path.zsh.inc'; fi
 export PATH="/usr/local/opt/ncurses/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/takahashiatsuki/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/takahashiatsuki/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/takahashiatsuki/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/takahashiatsuki/google-cloud-sdk/completion.zsh.inc'; fi
+
+# pnpm
+export PNPM_HOME="/Users/takahashiatsuki/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# VSCode
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
