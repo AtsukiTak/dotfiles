@@ -1,7 +1,12 @@
 #
 # 基本
 #
-export PATH=$HOME/.cargo/bin:/usr/local/go/bin:/usr/local/opt/llvm/bin:$HOME/google-cloud-sdk/bin:$PATH
+CARGO_BIN="$HOME/.cargo/bin"
+GO_BIN="/usr/local/go/bin"
+LLVM_BIN="/usr/local/opt/llvm/bin"
+GCP_SDK_BIN="$HOME/google-cloud-sdk/bin"
+PSQL_BIN="/opt/homebrew/opt/postgresql@18/bin"
+export PATH="$CARGO_BIN:$GO_BIN:$LLVM_BIN:$GCP_SDK_BIN:$PSQL_BIN:$PATH"
 export LD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$LD_LIBRARY_PATH
 export CPATH=/usr/local/opt/openssl/include:/usr/local/include:$CPATH
 
@@ -183,6 +188,11 @@ case "${TERM}" in
         ;;
 esac
 
+# ウィンドウタイトルを変更する
+function precmd() {
+  print -Pn "\e]0;%~\a"
+}
+
 #
 # その他
 #
@@ -210,6 +220,3 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-
-# VSCode
-[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
