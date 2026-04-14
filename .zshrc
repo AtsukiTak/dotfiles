@@ -6,7 +6,8 @@ GO_BIN="/usr/local/go/bin"
 LLVM_BIN="/usr/local/opt/llvm/bin"
 GCP_SDK_BIN="$HOME/google-cloud-sdk/bin"
 PSQL_BIN="/opt/homebrew/opt/postgresql@18/bin"
-export PATH="$CARGO_BIN:$GO_BIN:$LLVM_BIN:$GCP_SDK_BIN:$PSQL_BIN:$PATH"
+LOCAL_BIN="$HOME/.local/bin"
+export PATH="$CARGO_BIN:$GO_BIN:$LLVM_BIN:$GCP_SDK_BIN:$PSQL_BIN:$LOCAL_BIN:$PATH"
 export LD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$LD_LIBRARY_PATH
 export CPATH=/usr/local/opt/openssl/include:/usr/local/include:$CPATH
 
