@@ -127,6 +127,12 @@ cycle_pane_previous = ""
 # width = "80%"
 # height = "80%"
 
+[[keys.command]]
+key = "prefix+="
+type = "shell"
+command = "ruby ~/.config/herdr/equalize-panes.rb"
+description = "equalize panes"
+
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.
 # [keys.indexed]
