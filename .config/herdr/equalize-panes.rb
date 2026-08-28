@@ -26,7 +26,7 @@ module HerdrEqualizePanes
 
   def request(socket_path, id:, method:, params:)
     UNIXSocket.open(socket_path) do |socket|
-      socket.puts(JSON.generate(id:, method:, params:))
+      socket.puts(JSON.generate(id: id, method: method, params: params))
       response = JSON.parse(socket.gets || raise("Herdr socket closed without a response"))
       error = response["error"]
       raise(error["message"] || error.inspect) if error
@@ -43,7 +43,7 @@ module HerdrEqualizePanes
       socket_path,
       id: "equalize-export",
       method: "layout.export",
-      params: { tab_id: }
+      params: { tab_id: tab_id }
     )
 
     split_ratios(exported.fetch("layout").fetch("root")).each_with_index do |(path, ratio), index|
@@ -51,7 +51,7 @@ module HerdrEqualizePanes
         socket_path,
         id: "equalize-ratio-#{index}",
         method: "layout.set_split_ratio",
-        params: { tab_id:, path:, ratio: }
+        params: { tab_id: tab_id, path: path, ratio: ratio }
       )
     end
   end
