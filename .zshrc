@@ -3,7 +3,6 @@
 #
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
-fpath+=("$(brew --prefix)/share/zsh/site-functions")
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 PSQL_BIN="/opt/homebrew/opt/libpq/bin"
