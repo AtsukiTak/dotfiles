@@ -216,7 +216,7 @@ if [ -f '/Users/takahashiatsuki/google-cloud-sdk/path.zsh.inc' ]; then . '/Users
 if [ -f '/Users/takahashiatsuki/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/takahashiatsuki/google-cloud-sdk/completion.zsh.inc'; fi
 
 # pnpm
-export PNPM_HOME="/Users/takahashiatsuki/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
