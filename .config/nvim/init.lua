@@ -1,0 +1,40 @@
+vim.cmd("syntax enable")
+vim.cmd("filetype plugin indent on")
+
+-- netrwを無効化する
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+vim.o.number = true
+vim.opt.mouse = ""
+vim.o.ambiwidth = "single"
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.softtabstop = 2
+vim.o.autoindent = true
+vim.o.expandtab = true -- tabを入力した時にspaceで代替する
+vim.o.list = true -- tab文字などを可視化する
+vim.o.showcmd = false
+vim.o.sessionoptions = 'curdir,folds,globals,help,tabpages,terminal,winsize' -- セッション保存
+vim.o.showtabline = 2
+vim.o.scrollback = 2000
+vim.o.foldlevel = 99 -- 最初はfoldしない
+vim.o.foldtext = "" -- foldの表示テキストを生成しない
+vim.opt.fillchars:append("fold: ") -- fold行の残りをスペースで埋める
+
+-- Keymapのセットアップ
+require("keymaps").setup()
+
+-- カスタムコマンドのセットアップ
+vim.api.nvim_create_user_command("Sqa", function()
+  require("safeclose").safe_close()
+end, {})
+
+-- Colorのセットアップ
+require("color").setup()
+
+-- Pluginのセットアップ
+require("plugins").setup()
+
+-- Terminal buffer関連のセットアップ
+require("terminal").setup()

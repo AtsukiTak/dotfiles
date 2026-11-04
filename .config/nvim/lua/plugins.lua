@@ -1,0 +1,250 @@
+local M = {}
+
+function M.setup()
+  -- Lazy.nvim bootstrap
+  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+  if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "https://github.com/folke/lazy.nvim.git",
+      "--branch=stable",
+      lazypath,
+    })
+  end
+  vim.opt.rtp:prepend(lazypath)
+
+  require("lazy").setup({
+    {
+      "navarasu/onedark.nvim",
+      priority = 1000, -- make sure to load this before all the other start plugins
+      config = function()
+        require('onedark').setup {
+          style = 'darker',
+          colors = {
+            bg0 = '#1a1a1a',
+          },
+          highlights = {
+            MatchParen = { fg = '#fab387', bg = 'NONE', bold = true },
+          },
+        }
+        require('onedark').load()
+      end
+    },
+    {
+      -- nerdfont icons
+      "nvim-tree/nvim-web-devicons",
+      opts = {},
+    },
+    {
+      -- luaの便利関数collection
+      "nvim-lua/plenary.nvim",
+    },
+    {
+      'nvim-tree/nvim-tree.lua',
+      dependencies = { 'nvim-tree/nvim-web-devicons' },
+      config = function()
+        -- nvim-treeの設定
+        require("nvim-tree").setup({
+          filters = {
+            dotfiles = false,
+            git_ignored = false,
+          },
+          actions = {
+            open_file = {
+              window_picker = {
+                enable = true,
+                picker = require("winpick").pick_window
+              },
+            },
+          },
+          view = {
+            width = 30,
+          },
+          renderer = {
+            highlight_git = "name",
+            highlight_opened_files = "all",
+            icons = {
+              webdev_colors = false,
+              show = {
+                git = false,
+                folder = true,
+                file = true,
+                folder_arrow = true,
+              },
+            },
+          },
+        })
+      end,
+    },
+    {
+      -- 構文解析
+      "neovim-treesitter/nvim-treesitter",
+      dependencies = { "neovim-treesitter/treesitter-parser-registry" },
+      lazy = false,
+      build = ":TSUpdate",
+      config = function()
+        local langs = {
+          "javascript", "json", "json5", "lua", "markdown", "markdown_inline",
+          "python", "rust", "swift", "toml", "tsx", "typescript", "yaml"
+        }
+        pcall(vim.api.nvim_del_user_command, "MyTSInstall")
+        vim.api.nvim_create_user_command("MyTSInstall", function()
+          require("nvim-treesitter").install(langs, { summary = true }):wait(300000)
+        end, { desc = "Install configured Treesitter parsers" })
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = langs,
+          callback = function()
+            vim.treesitter.start()
+            vim.wo.foldmethod = "expr"
+            vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+          end,
+        })
+      end,
+    },
+    {
+      -- interactive search for files, buffers
+      "nvim-telescope/telescope.nvim",
+      tag = "v0.2.0",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope-file-browser.nvim",
+        "nvim-tree/nvim-web-devicons",
+      },
+      config = function()
+        require("telescope").load_extension("file_browser")
+      end,
+    },
+    {
+      -- make status bar cool
+      "nvim-lualine/lualine.nvim",
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+      config = function()
+        require("lualine").setup({
+          options = { theme = "onedark" },
+          sections = {
+            lualine_a = { "mode" },
+            lualine_b = { "diff", "diagnostics" },
+            lualine_c = { "filename" },
+            lualine_x = {},
+            lualine_y = {},
+            lualine_z = {},
+          },
+        })
+      end,
+    },
+    {
+      -- buffer deleteしたときにwindowを消さない
+      "nvim-mini/mini.bufremove",
+      config = function()
+        require("mini.bufremove").setup({ silent = true })
+      end,
+    },
+    {
+      -- tabpage manager
+      "nanozuki/tabby.nvim",
+      dependencies = "nvim-tree/nvim-web-devicons",
+      config = function()
+        require("tabby").setup({
+          preset = "tab_only",
+          option = {
+            lualine_theme = "everforest",
+          },
+        })
+      end,
+    },
+    {
+      "sindrets/diffview.nvim",
+    },
+    {
+      "lewis6991/gitsigns.nvim",
+      opts = {
+        on_attach = function(bufnr)
+          local gs = package.loaded.gitsigns
+          local map = function(mode, lhs, rhs, desc)
+            vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
+          end
+
+          map("n", "]c", function()
+            if vim.wo.diff then
+              return "]c"
+            end
+            gs.nav_hunk("next")
+          end, "Next hunk")
+          map("n", "[c", function()
+            if vim.wo.diff then
+              return "[c"
+            end
+            gs.nav_hunk("prev")
+          end, "Prev hunk")
+
+          map("n", "<leader>hs", gs.stage_hunk, "Stage hunk")
+          map("n", "<leader>hr", gs.reset_hunk, "Reset hunk (変更を破棄)")
+          map("n", "<leader>hu", gs.undo_stage_hunk, "Undo last stage hunk")
+
+          map({ "v" }, "<leader>hs", function()
+            gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+          end, "Stage selection")
+          map({ "v" }, "<leader>hr", function()
+            gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+          end, "Reset selection")
+
+          map("n", "<leader>hp", gs.preview_hunk, "Preview hunk")
+          map("n", "<leader>hb", gs.blame_line, "Blame line")
+          map("n", "<leader>hS", gs.stage_buffer, "Stage buffer")
+          map("n", "<leader>hR", gs.reset_buffer, "Reset buffer")
+          map("n", "<leader>hd", gs.diffthis, "Diff this")
+          map("n", "<leader>hD", function()
+            gs.diffthis("~")
+          end, "Diff vs HEAD")
+          map("n", "<leader>ht", gs.toggle_deleted, "Toggle deleted")
+          map("n", "<leader>hh", gs.select_hunk, "Select hunk (VISUALに入る)")
+        end,
+      },
+    },
+    {
+      "neovim/nvim-lspconfig",
+    },
+    {
+      "s1n7ax/nvim-window-picker",
+      version = "2.*",
+      config = function()
+        require("window-picker").setup({
+          hint = "floating-big-letter",
+          selection_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+          filter_rules = {
+            include_current_win = true,
+            bo = {
+              buftype = {},
+              filetype = {},
+            },
+          },
+          highlights = {
+            enabled = true,
+          },
+        })
+      end,
+    },
+    {
+      -- New typescript language server (replacement of typescript-language-server)
+      "pmizio/typescript-tools.nvim",
+      dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+      ft = { "typescript", "typescriptreact" },
+      opts = {},
+      config = function()
+        require("typescript-tools").setup({})
+      end,
+    },
+    {
+      "prettier/vim-prettier",
+      ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+    },
+    {
+      "rust-lang/rust.vim",
+      lazy = true,
+    },
+  })
+end
+
+return M
