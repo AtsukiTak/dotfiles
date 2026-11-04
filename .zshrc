@@ -65,6 +65,11 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+# aqua（terraform/aqua.yaml などで固定したツールのシム）
+if command -v aqua >/dev/null; then
+  export PATH="$(aqua root-dir)/bin:$PATH"
+fi
+
 #
 # オプション
 #
