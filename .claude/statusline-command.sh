@@ -1,11 +1,11 @@
 #!/bin/bash
 # Pure-style status line for Claude Code.
 # Layout (2 lines):
-#   line 1: <model> <effort> | ctx <bar> <used>% | 7d <bar> <used>% in <time to reset>
+#   line 1: <model> <effort> | ctx <bar> <used>% | 7d <bar> <used>% (<time to reset>)
 #   line 2: <dir in blue> <branch in dim grey><dirty marker>
 # ctx is context used, 7d is the weekly rate limit used. Both are shown as a
 # 10-cell bar (one █ per 10%, ░ for the rest) plus the percentage, coloured
-# yellow from 70% and red from 90%. 7d ends with the time until the window resets.
+# yellow from 70% and red from 90%. 7d ends with the time until the window resets in parentheses.
 
 input=$(cat)
 
@@ -83,7 +83,7 @@ head=""
 # "ctx <bar> <used>%"
 [ -n "$ctx" ] && add "$(gauge ctx "$ctx")"
 
-# "7d <bar> <used>% in <time to reset>"
+# "7d <bar> <used>% (<time to reset>)"
 if [ -n "$week" ]; then
   remain=""
   if [ -n "$reset" ]; then
@@ -95,7 +95,7 @@ if [ -n "$week" ]; then
     fi
   fi
   rl="$(gauge 7d "$week")"
-  [ -n "$remain" ] && rl="${rl} ${GREY}in ${remain}${RESET}"
+  [ -n "$remain" ] && rl="${rl} ${GREY}(${remain})${RESET}"
   add "$rl"
 fi
 
